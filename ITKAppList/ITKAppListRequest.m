@@ -84,7 +84,7 @@ static NSString* s_cacheDir = nil;
 	appList = [NSMutableArray array];
 	artworkQueue = [NSMutableArray array];
 	NSURL* url = [NSURL URLWithString:link];
-	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url] queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+	[NSURLConnection sendAsynchronousRequest:[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30] queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
 		if (connectionError) {
 			dispatch_async(dispatch_get_main_queue(), ^{
 				handler(nil, connectionError);
