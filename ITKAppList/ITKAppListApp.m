@@ -17,6 +17,24 @@
 	return self;
 }
 
+-(id) initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super init];
+	if (self) {
+		_originalJson = [aDecoder decodeObjectForKey:@"json"];
+		self.artwork = [aDecoder decodeObjectForKey:@"artwork"];
+	}
+	return self;
+}
+
+-(void) encodeWithCoder:(NSCoder *)aCoder
+{
+	[aCoder encodeObject:self.originalJson forKey:@"json"];
+	if (self.artwork) {
+		[aCoder encodeObject:self.artwork forKey:@"artwork"];
+	}
+}
+
 -(NSString*) name
 {
 	return _originalJson[@"trackName"];

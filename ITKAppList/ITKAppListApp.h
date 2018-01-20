@@ -5,7 +5,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ITKAppListApp : NSObject
+@interface ITKAppListApp : NSObject <NSCoding>
 
 @property (nonatomic, strong, readonly) NSString* name;
 @property (nonatomic, strong, readonly) NSString* version;
