@@ -149,8 +149,12 @@ static NSString* s_cacheDir = nil;
 		[self performSelector:@selector(getNextArtwork) withObject:nil afterDelay:0];
 		return;
 	}
-	
-	NSURL* url = [NSURL URLWithString:link];
+	NSURLComponents* comp = [[NSURLComponents alloc] initWithString:link];
+	if ([comp.scheme isEqualToString:@"http"] && [comp.host containsString:@".mzstatic.com"]) {
+		comp.host = [comp.host stringByReplacingOccurrencesOfString:@".mzstatic.com" withString:@"-ssl.mzstatic.com"];
+		comp.scheme = @"https";
+	}
+	NSURL* url = [comp URL];
 	NSMutableURLRequest* req = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:30];
 	
     NSString* path = [s_cacheDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%d.jpg", app.appId, (int)self.artworkSize]];
