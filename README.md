@@ -29,7 +29,7 @@ Get list and insert table rows.
 Use CocoaPods,
 
 ```ruby
-pod 'ITKAppList', :git => 'https://github.com/itok/ITKAppList.git'
+pod 'ITKAppList'
 ```
 
 ## License
